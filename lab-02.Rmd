@@ -93,8 +93,18 @@ plastic_data_all %>%
 
 ```{r Ex2, message = FALSE}
 # Write your code here to answer exercise 2
+plastic_data_all <- plastic_data_all %>%
+    mutate(
+        total_mismanaged_plastic = (mismanaged_plastic*population)
+    )
 
-
+plastic_data_all %>%
+	group_by(region) %>%
+  summarise(
+      v = mean(total_mismanaged_plastic)) %>%
+      arrange(desc(v))
+     
+# region with highest total mean is Aisa, lowest is Oceania
 
 ```
 
